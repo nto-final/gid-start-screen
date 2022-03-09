@@ -2,8 +2,9 @@ import React from 'react';
 import {Button, Select} from "antd";
 import { useState } from 'react';
 import axios from "axios";
-
+import { DefaulButton } from './UIkit/DefaultButton/DefaultButton';
 import "./style.css"
+import { useNavigate } from "react-router-dom";
 
 const ORIGIN = "http://127.0.0.1:8000/api/" 
 
@@ -16,6 +17,7 @@ function App() {
     const [points, setPoints] = useState<PointSelection[]>();
     const [selectedPoints, setSelectedPoints] = useState<number[]>();
     const [startingPoint, setStartingPoint] = useState<number>();
+    let navigate = useNavigate()
     if (!points?.length) {
         axios.get(ORIGIN+"points").then((e) => {
             console.log(e);
@@ -29,16 +31,16 @@ function App() {
     return (
         <div className="App">
             <div className="header">
-                AR-гид
+                AR Гид
             </div>
-            <Select placeholder="Начальная точка" onChange={(e) => {
+            <Select style={{"width":"300px"}} className="selector"  placeholder="Начальная точка" onChange={(e) => {
                 setStartingPoint(e)
             }}>
                 {
                     points?.map(e => <Select.Option value={e.key} key={e.key}>{e.value}</Select.Option>)
                 }
             </Select>
-            <Select placeholder="Точки которые хотите посетить" mode="multiple" onChange={(e) => {
+            <Select style={{"width":"300px"}} className="selector" placeholder="Точки которые хотите посетить" mode="multiple" onChange={(e) => {
                 setSelectedPoints(e);
             }}>
                 {
@@ -46,12 +48,13 @@ function App() {
                 }
         
             </Select>
-            <Button type={"primary"} onClick={() => {
+            <DefaulButton type="button" onClick={() => {
                 window.location.replace(
                     "https://127.0.0.1:8080?points=["+selectedPoints?.toString()+"]"+"&" +
                     "starting_point="+startingPoint?.toString()
                 );
-            }}>Начать навигацию</Button>
+            }}>Начать навигацию</DefaulButton>
+            <DefaulButton style={{"marginTop":"30vh"}} type="button" onClick={()=>navigate(-1)}>Назад</DefaulButton>
         </div>
   );
 }

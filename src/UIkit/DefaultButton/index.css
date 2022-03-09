@@ -1,0 +1,15 @@
+.defaultBtn{
+    border:none;
+    background:#73C9D6 ;
+    color: #282D26;
+    width: 35vh;
+    height: 75px;
+    font-size: 24px;
+    border-radius: 15px;
+    cursor: pointer;
+
+}
+
+.defaultBtn:hover{
+    opacity: 0.6;
+}
