@@ -1,0 +1,12 @@
+.App{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 20px;
+    margin-top: 30%;
+}
+.header{
+    align-self: center;
+    font-weight: bold;
+    transform: translateY(-50px);
+}
