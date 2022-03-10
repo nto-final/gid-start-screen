@@ -6,7 +6,7 @@ import { DefaulButton } from './UIkit/DefaultButton/DefaultButton';
 import "./style.css"
 import { useNavigate } from "react-router-dom";
 
-const ORIGIN = "http://127.0.0.1:8000/api/" 
+export const ORIGIN = "http://127.0.0.1:8000/api/" 
 
 interface PointSelection{
     key: string,
@@ -54,7 +54,7 @@ function App() {
                     "starting_point="+startingPoint?.toString()
                 );
             }}>Начать навигацию</DefaulButton>
-            <DefaulButton style={{"marginTop":"30vh"}} type="button" onClick={()=>navigate(-1)}>Назад</DefaulButton>
+            <DefaulButton type="button" onClick={()=>navigate(-1)}>Назад</DefaulButton>
         </div>
   );
 }
