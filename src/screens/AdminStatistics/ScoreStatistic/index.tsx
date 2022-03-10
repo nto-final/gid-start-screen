@@ -2,11 +2,13 @@ import react, { useState } from "react";
 import axios from "axios";
 import { ORIGIN } from "../../../App";
 import { Graph } from "../../../UIkit/Graph";
-
+import { useNavigate } from "react-router-dom";
+import "../index.css"
+import { DefaulButton } from "../../../UIkit/DefaultButton/DefaultButton";
 
 export const ScoreStatistic: react.FC = () => {
     const [data, setData] = useState<{name: string, average_visual:number, average_completeness: number, average_descr: number}[]>([]);
-
+    let navigate = useNavigate()
     if (data.length == 0) {
         axios.post(ORIGIN+"developer-statistics").then((e) => {
             var newData:{name: string, average_visual:number, average_completeness: number, average_descr: number}[] = [];
@@ -21,8 +23,9 @@ export const ScoreStatistic: react.FC = () => {
             setData(newData);
         })
     }
-    return <div>
-        <Graph header="Средняя законченность" data={
+    return <div className="statContainer">
+        <div style={{"transform":"none"}} className="headerStat">Статистика</div>
+        <Graph  header="Средняя законченность" data={
             data.map((e) => {
                 return {
                     name: e.name,
@@ -46,5 +49,6 @@ export const ScoreStatistic: react.FC = () => {
                 }
             })
         } type="circle"/>
+        <DefaulButton onClick={()=>navigate(-1)}>Назад</DefaulButton>
         </div>
 }

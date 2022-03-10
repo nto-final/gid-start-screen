@@ -2,6 +2,8 @@ import react from 'react';
 import {Table} from 'antd';
 import axios from "axios";
 import {ORIGIN} from "../../../App";
+import {useNavigate} from "react-router-dom"
+import { DefaulButton } from '../../../UIkit/DefaultButton/DefaultButton';
 
 export const AverageScoreViewingStatistic: react.FC = () => {
     const [data, setData] = react.useState<{average_score:number, average_time: number, name: string}[]>([]);
@@ -38,7 +40,13 @@ export const AverageScoreViewingStatistic: react.FC = () => {
             setData(newData);
         });
     }
-    return <div>
-        <Table columns={columns} dataSource={data}></Table>
-    </div>;
+    let navigate = useNavigate()
+
+    return (
+    <div className="roomContainer">
+        <div className="header"> Статистика </div>
+        <Table style={{width:"100%"}}dataSource={data} columns={columns}></Table>
+        <DefaulButton onClick={()=>navigate(-1)}>Назад</DefaulButton>
+    </div>)
+    ;
 }

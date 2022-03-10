@@ -2,11 +2,14 @@ import react from "react";
 import { Graph } from "../../../UIkit/Graph";
 import axios from "axios";
 import { ORIGIN } from "../../../App";
-
+import { useNavigate } from "react-router-dom";
+import "../index.css"
+import { DefaulButton } from "../../../UIkit/DefaultButton/DefaultButton";
 
 export const TimeAroundExponat: react.FC = () => {
 
     const [data, setData] = react.useState<{name: string, min_time: number, max_time: number, average_time: number}[]>([]);
+    let navigate = useNavigate()
 
     if (!data.length) {
         axios.post(ORIGIN+"developer-statistics").then((e) => {
@@ -23,7 +26,8 @@ export const TimeAroundExponat: react.FC = () => {
         })
     }
 
-    return <div>
+    return <div className="statContainer">
+        <div style={{"transform":"none"}} className="headerStat">Статистика</div>
         <Graph type={"circle"} data={data.map((e) => {
             return {
                 name: e.name,
@@ -42,5 +46,7 @@ export const TimeAroundExponat: react.FC = () => {
                 value: e.min_time
             }
         })} header="Минимальное время проведенное около экспоната" />
+        <DefaulButton onClick={()=>navigate(-1)}>Назад</DefaulButton>
+
     </div>
 }

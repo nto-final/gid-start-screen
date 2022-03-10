@@ -1,16 +1,16 @@
 import react from "react";
-import {Button} from 'antd';
 import "./index.css"
 import { DefaulButton } from "../../UIkit/DefaultButton/DefaultButton";
 import { useNavigate } from "react-router-dom";
-export const UserStatistics: react.FC = () => {
+
+export const AdminStatistics: react.FC = () => {
     let navigate = useNavigate()
-    return <div className="userStat">
+    return <div className="admStat">
         <div className="header" >Статистика</div>
-        <DefaulButton onClick={()=>navigate("room")}>
-            Посещение зала
+        <DefaulButton onClick={()=>navigate("time-exponat")}>
+            Время посещения
         </DefaulButton>
-        <DefaulButton onClick={()=>navigate("average-score")}>
+        <DefaulButton onClick={()=>navigate("average-scoring")}>
             Оценки экспонатов
         </DefaulButton>
         <DefaulButton onClick={()=>navigate(-1)}>Назад</DefaulButton>

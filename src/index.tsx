@@ -14,7 +14,7 @@ import {
 import 'antd/dist/antd.css';
 import { TimeAroundExponat } from './screens/AdminStatistics/TimeAroundExponat';
 import { ScoreStatistic } from './screens/AdminStatistics/ScoreStatistic';
-
+import {AdminStatistics} from "./screens/AdminStatistics/index"
 
 ReactDOM.render(
   <React.StrictMode>
@@ -24,6 +24,7 @@ ReactDOM.render(
             <Route path={"/user-statistic"} element={<UserStatistics />} />
             <Route path={"/user-statistic/average-score"} element={<AverageScoreViewingStatistic />} />
             <Route path={"/user-statistic/room"} element={<RoomViewingStatistic />} />
+            <Route path={"/admin-statistic"} element={<AdminStatistics/>}></Route>
             <Route path={"/admin-statistic/time-exponat"} element={<TimeAroundExponat />} />
             <Route path={"/admin-statistic/average-scoring"} element={<ScoreStatistic />} />
         </Routes>
